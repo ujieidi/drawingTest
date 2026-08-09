@@ -8,10 +8,22 @@ body {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    touch-action: none;
+    cursor: none;
 }
 
 #button {
     width: 7rem;
     height: 5rem;
     font-size: 1rem;
+}
+
+#cursorOutline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 1px solid black;
+    border-radius: 50%;
 }
