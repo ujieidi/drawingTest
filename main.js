@@ -48,17 +48,20 @@ document.addEventListener("keydown", (e) => {
 
 canvas.addEventListener("mousedown", (e) => {
   drawing = true
-  
-  const x = e.offsetX
-  const y = e.offsetY
+  const rect = canvas.getBoundingClientRect()
+
+  const x = (e.clientX - rect.left) * (canvas.width / rect.width)
+  const y = (e.clientY - rect.top) * (canvas.height / rect.height)
   
   oldX = x
   oldY = y
 })
 
 canvas.addEventListener("mousemove", (e) => {
-  const x = e.offsetX
-  const y = e.offsetY
+  const rect = canvas.getBoundingClientRect()
+
+  const x = (e.clientX - rect.left) * (canvas.width / rect.width)
+  const y = (e.clientY - rect.top) * (canvas.height / rect.height)
   
   outlinePosition(e.clientX, e.clientY)
   
