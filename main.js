@@ -1,26 +1,33 @@
 let drawing = false
 let erasing = false
 
-let size = 3
+let size = 5
 let oldX
 let oldY
 
 const cursorOutline = document.getElementById("cursorOutline")
 const button = document.getElementById("button")
+const clearButton = document.getElementById("clearButton")
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
+function clearLayer(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+}
 
 function toggle(){
   erasing = !erasing
   
   if (erasing === true) {
   ctx.globalCompositeOperation = "destination-out"
-  ctx.lineWidth = 20
+  ctx.lineWidth = 40
   size = 20
   } else {
   ctx.globalCompositeOperation = "source-over"
-  ctx.lineWidth = 3
-  size = 3
+  ctx.lineWidth = 10
+  size = 5
   }
   cursorOutline.style.width = size + "px"
   cursorOutline.style.height = size + "px"
@@ -28,10 +35,11 @@ function toggle(){
 }
 
 function outlinePosition(x, y){
-  cursorOutline.style.left = x - size/2 + "px"
-  cursorOutline.style.top = y - size/2 + "px"
+  cursorOutline.style.left = x + "px"
+  cursorOutline.style.top = y + "px"
 }
 
+clearButton.addEventListener("click", clearLayer )
 button.addEventListener("click", toggle)
 
 document.addEventListener("keydown", (e) => {
@@ -74,8 +82,8 @@ canvas.addEventListener("touchstart", (e) => {
   
   const rect = canvas.getBoundingClientRect()
   
-  const x = e.touches[0].clientX - rect.left
-  const y = e.touches[0].clientY - rect.top
+  const x = (e.touches[0].clientX - rect.left) * (canvas.width/rect.width)
+  const y = (e.touches[0].clientY - rect.top) * (canvas.height/rect.height)
   
   oldX = x
   oldY = y
@@ -84,8 +92,8 @@ canvas.addEventListener("touchstart", (e) => {
 canvas.addEventListener("touchmove", (e) => {
   const rect = canvas.getBoundingClientRect()
   
-  const x = e.touches[0].clientX - rect.left
-  const y = e.touches[0].clientY - rect.top
+  const x = (e.touches[0].clientX - rect.left) * (canvas.width/rect.width)
+  const y = (e.touches[0].clientY - rect.top) * (canvas.height/rect.height)
   
   outlinePosition(e.touches[0].clientX, e.touches[0].clientY)
   
@@ -106,9 +114,9 @@ document.addEventListener("touchend", () => {
 
 function update(){
   ctx.lineCap = "round"
-  ctx.lineWidth = 3
-  cursorOutline.style.width = 3 + "px"
-  cursorOutline.style.height = 3 + "px"
+  ctx.lineWidth = size
+  cursorOutline.style.width = size + "px"
+  cursorOutline.style.height = size + "px"
 }
 
 update()
