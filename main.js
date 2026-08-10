@@ -10,8 +10,8 @@ const button = document.getElementById("button")
 const clearButton = document.getElementById("clearButton")
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+canvas.width = window.innerWidth / 2
+canvas.height = window.innerHeight / 2
 
 function clearLayer(){
   ctx.clearRect(0, 0, canvas.width, canvas.height)
