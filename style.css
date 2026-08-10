@@ -12,6 +12,7 @@ body {
     transform:translate(-50%, -50%);
     touch-action: none;
     cursor: none;
+    user-select: none;
 }
 
 #cursorOutline {

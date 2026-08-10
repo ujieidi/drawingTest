@@ -47,6 +47,7 @@ document.addEventListener("keydown", (e) => {
 })
 
 canvas.addEventListener("mousedown", (e) => {
+  e.preventDefault()
   drawing = true
   const rect = canvas.getBoundingClientRect()
 
