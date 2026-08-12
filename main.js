@@ -1,7 +1,7 @@
 let drawing = false
 let erasing = false
 
-let size = 5
+let size = 3
 let oldX
 let oldY
 
@@ -22,12 +22,12 @@ function toggle(){
   
   if (erasing === true) {
   ctx.globalCompositeOperation = "destination-out"
-  ctx.lineWidth = 40
-  size = 20
+  ctx.lineWidth = 15
+  size = 15
   } else {
   ctx.globalCompositeOperation = "source-over"
-  ctx.lineWidth = 10
-  size = 5
+  ctx.lineWidth = 3
+  size = 3
   }
   cursorOutline.style.width = size + "px"
   cursorOutline.style.height = size + "px"
