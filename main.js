@@ -1,7 +1,7 @@
 let drawing = false
 let erasing = false
 
-let size = 3
+let size = 5
 let oldX
 let oldY
 
@@ -9,6 +9,8 @@ const cursorOutline = document.getElementById("cursorOutline")
 const colorPicker = document.getElementById("colorPicker")
 const button = document.getElementById("button")
 const clearButton = document.getElementById("clearButton")
+const sizeSlider = document.getElementById("sizeSlider")
+const brushSizeDisplay = document.getElementById("brushSizeDisplay")
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 canvas.width = window.innerWidth / 2
@@ -24,16 +26,14 @@ function toggle(){
   
   if (erasing === true) {
   ctx.globalCompositeOperation = "destination-out"
-  ctx.lineWidth = 15
-  size = 15
+  ctx.lineWidth = size
   } else {
   ctx.globalCompositeOperation = "source-over"
-  ctx.lineWidth = 3
-  size = 3
+  ctx.lineWidth = size
   }
   cursorOutline.style.width = size + "px"
   cursorOutline.style.height = size + "px"
-  console.log(erasing)
+  console.log("is erasing " + erasing)
 }
 
 function outlinePosition(x, y){
@@ -129,11 +129,17 @@ document.addEventListener("touchend", () => {
   drawing = false
 })
 
+sizeSlider.addEventListener("input", () => {
+  size = Number(sizeSlider.value)
+  update()
+})
+
 function update(){
   ctx.lineCap = "round"
   ctx.lineWidth = size
   cursorOutline.style.width = size + "px"
   cursorOutline.style.height = size + "px"
+  brushSizeDisplay.textContent = size
 }
 
 update()
