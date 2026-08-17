@@ -6,6 +6,7 @@ let oldX
 let oldY
 
 const cursorOutline = document.getElementById("cursorOutline")
+const colorPicker = document.getElementById("colorPicker")
 const button = document.getElementById("button")
 const clearButton = document.getElementById("clearButton")
 const canvas = document.getElementById("canvas")
@@ -41,9 +42,18 @@ function outlinePosition(x, y){
 
 clearButton.addEventListener("click", clearLayer )
 button.addEventListener("click", toggle)
+colorPicker.addEventListener("input", () => {
+  ctx.strokeStyle = colorPicker.value
+})
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "1"){toggle()}
+})
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "c") {
+        colorPicker.click()
+    }
 })
 
 canvas.addEventListener("mousedown", (e) => {
