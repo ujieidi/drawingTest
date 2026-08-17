@@ -13,6 +13,7 @@ const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 canvas.width = window.innerWidth / 2
 canvas.height = window.innerHeight / 2
+ctx.strokeColor = "#000"
 
 function clearLayer(){
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -44,15 +45,17 @@ clearButton.addEventListener("click", clearLayer )
 button.addEventListener("click", toggle)
 colorPicker.addEventListener("input", () => {
   ctx.strokeStyle = colorPicker.value
+  console.log(`setted color to ${colorPicker.value}`)
 })
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "1"){toggle()}
+  if (e.key === "1"){toggle(); console.log(`clicked ${e.key}`)}
 })
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "c") {
         colorPicker.click()
+        console.log(`clicked ${e.key}`)
     }
 })
 
