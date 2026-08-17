@@ -32,3 +32,8 @@ body {
     border-radius: 50%;
     pointer-events: none;
 }
+
+#container {
+    display: flex;
+    justify-content: center;
+}
