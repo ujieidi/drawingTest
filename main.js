@@ -15,7 +15,7 @@ const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 canvas.width = window.innerWidth / 2
 canvas.height = window.innerHeight / 2
-ctx.strokeColor = "#000"
+ctx.strokeStyle = "#000"
 
 function clearLayer(){
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -131,6 +131,7 @@ document.addEventListener("touchend", () => {
 
 sizeSlider.addEventListener("input", () => {
   size = Number(sizeSlider.value)
+  console.log(size)
   update()
 })
 
